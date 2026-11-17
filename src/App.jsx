@@ -1,4 +1,3 @@
-
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeProvider'
 import MainLayout from './layouts/MainLayout'
