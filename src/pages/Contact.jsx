@@ -16,21 +16,21 @@ const contacts = [
   {
     label: 'GitHub',
     detail: 'Explore my repositories',
-    href: 'https://github.com/',
+    href: 'https://github.com/SitherDorji112/capstone_dashboard_southern_Bhutan',
     icon: CodeXml,
   },
   {
     label: 'LinkedIn',
     detail: 'Connect professionally',
-    href: 'https://www.linkedin.com/',
+    href: 'https://www.linkedin.com/in/sonam-dawa-doya-84b237329?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     icon: BriefcaseBusiness,
   },
 ]
 
 export default function Contact() {
   return (
-    <section className="max-w-3xl">
-      <p className="accent text-xs font-semibold tracking-[0.2em]">
+    <section className="max-w-3xl items-center mx-auto flex flex-col">
+      <p className="accent text-xs font-semibold tracking-[0.2em] pb-2">
         GET IN TOUCH
       </p>
       <h1 className="mt-3 text-4xl font-bold sm:text-5xl">

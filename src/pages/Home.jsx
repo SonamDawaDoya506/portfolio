@@ -2,9 +2,6 @@
 import {
   ArrowDownRight,
   ArrowRight,
-  BriefcaseBusiness,
-  CodeXml,
-  Mail,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -42,14 +39,14 @@ const featuredProjects = [
     title: 'Admission Data Analytics',
     description:
       'Student admission data validation, analysis and dashboard development.',
-    technologies: ['Python', 'Data Cleaning', 'Dashboards'],
+    technologies: ['Python', 'Data Cleaning', 'Dashboards', 'Excel '],
   },
 ]
 
 export default function Home() {
   return (
     <div className="space-y-8 sm:space-y-8">
-      <section className="flex min-h-[440px] flex-col justify-center py-10 sm:py-16">
+      <section className="flex flex-col">
         <div
           className="mb-7 flex w-fit items-center gap-2 rounded-full border px-4 py-2 text-sm"
           style={{ borderColor: 'var(--border)', color: 'var(--muted)' }}
@@ -65,21 +62,23 @@ export default function Home() {
           Hello, welcome to my portfolio
         </p>
 
-        <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-          Turning data into
+        <h1 className="max-w-4xl text-4xl ">
+          Turning data into {''}
           <span className="accent"> meaningful solutions.</span>
         </h1>
 
-        <p className="muted mt-6 max-w-2xl text-base leading-8 sm:text-lg">
-          I explore data, develop intelligent applications, and build
-          digital solutions to solve practical problems. Explore my
-          projects, technical experience, and work.
+        <p className="muted text-center mt-6 text-justify text-lg">
+          I am a detail-oriented Data Science graduate with strong analytical, data validation, and 
+          problem-solving skills. Experienced in data analysis, dashboard development, GIS mapping, 
+          and maintaining accurate records through internship projects at Sherubtse College. Proficient 
+          in Python, Excel, SQL, and data visualisation, with a strong commitment to accuracy, 
+          confidentiality, and teamwork. Eager to apply analytical skills in a professional setting to contribute to data-driven decision-making and organisational success.
         </p>
 
-        <div className="mt-9 flex flex-wrap gap-3">
+        <div className="mt-5 items-center flex-wrap gap-3 sm:mt-8 sm:flex sm:justify-center ">
           <Link
             to="/projects"
-            className="inline-flex sm:items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white transition-opacity hover:opacity-85"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white transition-opacity hover:opacity-85"
             style={{ background: 'var(--accent)' }}
           >
             Explore projects <ArrowRight size={18} />
@@ -87,7 +86,7 @@ export default function Home() {
 
           <Link
             to="/contact"
-            className="inline-flex sm:items-center gap-2 rounded-xl border px-5 py-3 font-semibold transition-colors hover:opacity-75"
+            className="inline-flex items-center gap-2 rounded-xl border px-5 py-3 font-semibold transition-colors hover:opacity-75"
             style={{ borderColor: 'var(--border)' }}
           >
             Get in touch <ArrowDownRight size={18} />
@@ -98,9 +97,9 @@ export default function Home() {
       <section>
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
-            <p className="accent text-xs font-semibold tracking-[0.2em] items-center">
+            {/* <p className="accent text-xs font-semibold tracking-[0.2em] items-center">
               WHAT I WORK WITH
-            </p>
+            </p> */}
             <h2 className="text-2xl font-bold sm:text-3xl">
               Skills & technologies
             </h2>
@@ -123,9 +122,9 @@ export default function Home() {
       <section>
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="accent mb-2 text-xs font-semibold tracking-[0.2em]">
+            {/* <p className="accent mb-2 text-xs font-semibold tracking-[0.2em]">
               SELECTED WORK
-            </p>
+            </p> */}
             <h2 className="text-2xl font-bold sm:text-3xl">
               Featured projects
             </h2>
@@ -184,13 +183,13 @@ export default function Home() {
       <section
         className="surface rounded-3xl p-7 sm:p-10"
       >
-        <p className="accent text-xs font-semibold tracking-[0.2em]">
+        <p className="accent text-xs font-semibold tracking-[0.2em] pb-2 text-center">
           LET'S CONNECT
         </p>
-        <h2 className="mt-4 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
+        <h2 className="">
           Have a project or opportunity in mind?
         </h2>
-        <p className="muted mt-4 max-w-xl leading-7">
+        <p className="muted mt-4 text-center text-lg leading-7">
           I am open to connecting with people working on interesting
           data, technology, and software projects.
         </p>

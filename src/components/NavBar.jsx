@@ -1,98 +1,106 @@
-
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Menu, X, Sun, Moon } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
+import { Menu, X } from 'lucide-react'
 
 const links = [
   { label: 'Home', to: '/' },
   { label: 'Projects', to: '/projects' },
   { label: 'Experience', to: '/experience' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Certificates', to: '/certificates' },
 ]
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const dialogRef = useRef(null)
+
+  const toggleDrawer = () => {
+    if (dialogRef.current) {
+      if (dialogRef.current.open) {
+        dialogRef.current.close()
+      } else {
+        dialogRef.current.showModal()
+      }
+    }
+  }
 
   const linkClass = ({ isActive }) =>
-    `text-sm transition-colors ${
-      isActive ? 'accent font-semibold' : 'muted hover:opacity-100'
+    `nav-link text-sm transition-colors ${
+      isActive ? 'active accent font-semibold' : 'muted hover:opacity-100'
     }`
 
   return (
-    <header
-      className="sticky top-0 z-50 border-b backdrop-blur-xl"
+    <nav
+      className="navbar lg:navbar-expand bg-1 fg-2 sticky top-0 z-50 border-b backdrop-blur-xl"
       style={{
-        background: 'color-mix(in srgb, var(--bg) 88%, transparent)',
+        background: 'color-mix(in srgb, var(--bg) 90%, transparent)',
         borderColor: 'var(--border)',
       }}
     >
-      <nav className="container-page flex h-[72px] items-center justify-between">
-        <Link
-          to="/"
-          onClick={() => setMenuOpen(false)}
-          className="text-lg font-bold tracking-tight"
-        >
-          Portfolio<span className="accent">.</span>
+      <div className="container-fluid container-page flex h-[72px] items-center justify-between">
+        <Link to="/" className="navbar-brand text-lg font-bold tracking-tight">
+          <span className="accent">Portfolio</span>
         </Link>
 
+        {/* Desktop Nav Links */}
         <div className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              className={linkClass}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          <ul className="navbar-nav flex flex-row gap-6">
+            {links.map((link) => (
+              <li key={link.to} className="nav-item">
+                <NavLink to={link.to} end={link.to === '/'} className={linkClass}>
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            title="Toggle colour theme"
-            className="rounded-xl border p-2.5 transition-colors"
-            style={{ borderColor: 'var(--border)' }}
-          >
-            {theme === 'dark'
-              ? <Sun size={18} />
-              : <Moon size={18} />}
-          </button>
-
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            className="rounded-xl border p-2.5 md:hidden"
-            style={{ borderColor: 'var(--border)' }}
-          >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
-      </nav>
-
-      {menuOpen && (
-        <div
-          className="container-page flex flex-col gap-5 border-t py-5 md:hidden"
+        {/* Mobile Toggle Button */}
+        <button
+          className="btn-icon navbar-toggler rounded-xl border p-2.5 md:hidden"
+          type="button"
+          onClick={toggleDrawer}
+          aria-label="Toggle navigation"
           style={{ borderColor: 'var(--border)' }}
         >
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              onClick={() => setMenuOpen(false)}
-              className={linkClass}
+          {/* Using Lucide icons or falling back to CSS icon */}
+          <Menu size={18} />
+        </button>
+
+        {/* Mobile Drawer */}
+        <dialog
+          ref={dialogRef}
+          className="drawer drawer-end"
+          id="navbarNavMenu"
+        >
+          <div className="drawer-header flex items-center justify-between p-4">
+            <h5 className="drawer-title font-bold" id="navbarNavMenuLabel">Menu</h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={toggleDrawer}
+              aria-label="Close"
             >
-              {link.label}
-            </NavLink>
-          ))}
-        </div>
-      )}
-    </header>
+              <X size={18} />
+            </button>
+          </div>
+          <div className="drawer-body p-4">
+            <ul className="navbar-nav flex flex-col gap-4">
+              {links.map((link) => (
+                <li key={link.to} className="nav-item">
+                  <NavLink
+                    to={link.to}
+                    end={link.to === '/'}
+                    onClick={toggleDrawer}
+                    className={linkClass}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </dialog>
+      </div>
+    </nav>
   )
 }
